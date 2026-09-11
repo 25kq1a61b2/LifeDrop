@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Active Emergency Requests – LifeDrop</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-drop">
+          <svg viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+        </div>
+        <div>
+          <div class="brand-name">Life<span>Drop</span></div>
+          <div class="brand-tag">Emergency Board</div>
+        </div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="find-donor.html" class="nav-link">Find Donor</a></li>
+        <li><a href="emergency-requests.html" class="nav-link active">Emergency Requests</a></li>
+      </ul>
+
+      <div class="nav-actions" id="nav-actions">
+        <!-- populated by main.js -->
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="container">
+      <!-- Header -->
+      <div style="margin-bottom: 28px; display: flex; justify-content: space-between; align-items: flex-end;">
+        <div>
+          <span class="section-tag">Urgent Demands</span>
+          <h1 style="font-size: 2.2rem; letter-spacing: -0.5px;">Live Emergency Blood Requests</h1>
+          <p style="color: var(--text-muted); margin-top: 4px;">
+            Critical and high-priority blood shortages submitted by hospitals requiring immediate donor mobilization.
+          </p>
+        </div>
+        <a href="emergency-request.html" class="btn btn-danger btn-pulse">
+          + Create Emergency Request
+        </a>
+      </div>
+
+      <!-- Filters Card -->
+      <div class="filter-card">
+        <div class="filter-row">
+          <div class="filter-group">
+            <label class="form-label" for="filter-urgency">Urgency Level</label>
+            <select id="filter-urgency" class="form-control">
+              <option value="All">All Urgency Levels</option>
+              <option value="Critical">🔴 Critical Only</option>
+              <option value="High">🟠 High Priority</option>
+              <option value="Medium">🟡 Medium Priority</option>
+              <option value="Low">🔵 Low Priority</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label class="form-label" for="filter-blood-group">Required Blood Group</label>
+            <select id="filter-blood-group" class="form-control">
+              <option value="All">All Blood Groups</option>
+              <option value="A+">A+</option>
+              <option value="A-">A-</option>
+              <option value="B+">B+</option>
+              <option value="B-">B-</option>
+              <option value="AB+">AB+</option>
+              <option value="AB-">AB-</option>
+              <option value="O+">O+</option>
+              <option value="O-">O-</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label class="form-label" for="filter-status">Request Status</label>
+            <select id="filter-status" class="form-control">
+              <option value="Active" selected>🟢 Active Demands</option>
+              <option value="Fulfilled">✓ Fulfilled</option>
+              <option value="All">All Statuses</option>
+            </select>
+          </div>
+
+          <div style="display: flex; gap: 10px; align-items: flex-end; margin-top: 22px;">
+            <button id="btn-reset-requests" class="btn btn-outline">
+              Reset Filters
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Results Meta -->
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+        <span id="requests-count" style="font-weight: 600; color: var(--text-dark); font-size: 1.05rem;">
+          Loading active requests...
+        </span>
+        <span style="font-size: 0.85rem; color: var(--critical-red); font-weight: 600;">
+          ⚡ Critical requests are prioritized at the top of the feed
+        </span>
+      </div>
+
+      <!-- Requests Grid Container -->
+      <div id="requests-container" class="requests-grid">
+        <!-- populated dynamically by emergency.js -->
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer" style="padding: 32px 0;">
+    <div class="container text-center" style="font-size: 0.88rem; color: #94A3B8;">
+      &copy; 2026 LifeDrop – Blood Shortage Management System. Every drop counts.
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/emergency.js"></script>
+</body>
+</html>

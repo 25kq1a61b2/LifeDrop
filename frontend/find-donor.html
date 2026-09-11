@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find Blood Donors – LifeDrop</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-drop">
+          <svg viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+        </div>
+        <div>
+          <div class="brand-name">Life<span>Drop</span></div>
+          <div class="brand-tag">Donor Directory</div>
+        </div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="find-donor.html" class="nav-link active">Find Donor</a></li>
+        <li><a href="emergency-requests.html" class="nav-link">Emergency Requests</a></li>
+      </ul>
+
+      <div class="nav-actions" id="nav-actions">
+        <!-- populated by main.js -->
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="container">
+      <!-- Page Header -->
+      <div style="margin-bottom: 28px; display: flex; justify-content: space-between; align-items: flex-end;">
+        <div>
+          <span class="section-tag">Direct Donor Network</span>
+          <h1 style="font-size: 2.2rem; letter-spacing: -0.5px;">Search Available Blood Donors</h1>
+          <p style="color: var(--text-muted); margin-top: 4px;">
+            Find compatible voluntary donors nearby and connect immediately during medical emergencies.
+          </p>
+        </div>
+        <a href="emergency-request.html" class="btn btn-danger btn-pulse">
+          🚨 Broadcast Emergency
+        </a>
+      </div>
+
+      <!-- Search & Filter Card -->
+      <div class="filter-card">
+        <div class="filter-row">
+          <div class="filter-group">
+            <label class="form-label" for="filter-blood-group">Blood Group</label>
+            <select id="filter-blood-group" class="form-control">
+              <option value="All">All Blood Groups</option>
+              <option value="A+">A+ (A Positive)</option>
+              <option value="A-">A- (A Negative)</option>
+              <option value="B+">B+ (B Positive)</option>
+              <option value="B-">B- (B Negative)</option>
+              <option value="AB+">AB+ (Universal Recipient)</option>
+              <option value="AB-">AB- (AB Negative)</option>
+              <option value="O+">O+ (O Positive)</option>
+              <option value="O-">O- (Universal Donor)</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label class="form-label" for="filter-city">City or Region</label>
+            <input type="text" id="filter-city" class="form-control" placeholder="e.g. Chicago, New York, Houston...">
+          </div>
+
+          <div class="filter-group">
+            <label class="form-label" for="filter-availability">Availability Status</label>
+            <select id="filter-availability" class="form-control">
+              <option value="All">All Statuses</option>
+              <option value="Available" selected>🟢 Available Only</option>
+              <option value="Not Available">⚪ Not Available</option>
+            </select>
+          </div>
+
+          <div style="display: flex; gap: 10px; align-items: flex-end; margin-top: 22px;">
+            <button id="btn-filter-search" class="btn btn-primary">
+              🔍 Search
+            </button>
+            <button id="btn-filter-reset" class="btn btn-outline">
+              Reset
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Results Meta -->
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+        <span id="results-count" style="font-weight: 600; color: var(--text-dark); font-size: 1.05rem;">
+          Searching donors...
+        </span>
+        <span style="font-size: 0.85rem; color: var(--text-muted);">
+          🔒 Donor phone & email are verified and protected
+        </span>
+      </div>
+
+      <!-- Donors Cards Grid -->
+      <div id="donors-container" class="donor-grid">
+        <!-- Rendered dynamically by donor.js -->
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" style="padding: 32px 0;">
+    <div class="container text-center" style="font-size: 0.88rem; color: #94A3B8;">
+      &copy; 2026 LifeDrop – Blood Shortage Management System. Connecting lives in moments that matter.
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/donor.js"></script>
+</body>
+</html>

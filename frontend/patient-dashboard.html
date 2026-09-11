@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patient Portal – LifeDrop</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-drop">
+          <svg viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+        </div>
+        <div>
+          <div class="brand-name">Life<span>Drop</span></div>
+          <div class="brand-tag">Patient Portal</div>
+        </div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="find-donor.html" class="nav-link">Find Donor</a></li>
+        <li><a href="emergency-requests.html" class="nav-link">Emergency Requests</a></li>
+      </ul>
+
+      <div class="nav-actions" id="nav-actions">
+        <!-- populated by main.js -->
+      </div>
+    </div>
+  </nav>
+
+  <!-- Dashboard Shell -->
+  <div class="dashboard-wrapper" id="patient-dashboard-view">
+    <!-- Sidebar -->
+    <aside class="dashboard-sidebar">
+      <div>
+        <div class="dashboard-brand-user">
+          <div class="sidebar-avatar" style="background: var(--critical-red);">❤️</div>
+          <div class="sidebar-user-meta">
+            <h4 id="patient-name-display">Loading Patient...</h4>
+            <span class="sidebar-role-badge">Patient / Family</span>
+          </div>
+        </div>
+
+        <ul class="sidebar-nav">
+          <li><a href="patient-dashboard.html" class="sidebar-link active">📊 My Blood Requests</a></li>
+          <li><a href="emergency-request.html" class="sidebar-link">🚨 Post Emergency Request</a></li>
+          <li><a href="find-donor.html" class="sidebar-link">🔍 Find Compatible Donors</a></li>
+          <li><a href="emergency-requests.html" class="sidebar-link">📋 Public Board</a></li>
+        </ul>
+      </div>
+
+      <div style="background: rgba(255,255,255,0.05); padding: 14px; border-radius: var(--radius-md); font-size: 0.82rem; color: #94A3B8;">
+        🩺 <strong>Emergency Tip:</strong> If immediate transfusion is critical, call 911 or your primary hospital trauma hotline directly.
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="dashboard-main">
+      <!-- Header -->
+      <div class="dashboard-header">
+        <div>
+          <h1>Patient & Family Blood Desk</h1>
+          <p>Track your submitted emergency blood requirements and search nearby voluntary donors.</p>
+        </div>
+
+        <a href="emergency-request.html" class="btn btn-danger btn-pulse">
+          + Post New Blood Request
+        </a>
+      </div>
+
+      <!-- Patient Profile Summary Cards -->
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 32px;">
+        <div class="card card-hover" style="display: flex; align-items: center; gap: 16px;">
+          <div class="stat-icon icon-red">🩸</div>
+          <div>
+            <small style="color: var(--text-muted); font-weight: 600; text-transform: uppercase; font-size: 0.75rem;">Your Blood Type</small>
+            <h3 id="patient-blood-display" style="font-size: 1.8rem; color: var(--primary-red);">O-</h3>
+          </div>
+        </div>
+
+        <div class="card card-hover" style="display: flex; align-items: center; gap: 16px;">
+          <div class="stat-icon icon-blue">📍</div>
+          <div>
+            <small style="color: var(--text-muted); font-weight: 600; text-transform: uppercase; font-size: 0.75rem;">Primary Location</small>
+            <h4 id="patient-city-display" style="font-size: 1.15rem; margin-top: 4px;">Chicago, IL</h4>
+          </div>
+        </div>
+
+        <div class="card card-hover" style="display: flex; align-items: center; gap: 16px;">
+          <div class="stat-icon icon-green">🛡️</div>
+          <div>
+            <small style="color: var(--text-muted); font-weight: 600; text-transform: uppercase; font-size: 0.75rem;">Hospital Coordination</small>
+            <h4 style="color: var(--healthcare-dark-blue); font-size: 1.05rem; margin-top: 4px;">Connected & Active</h4>
+          </div>
+        </div>
+      </div>
+
+      <!-- My Emergency Blood Requests Table -->
+      <div class="card" style="padding: 24px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+          <div>
+            <h3 style="font-size: 1.25rem;">Your Submitted Blood Requests</h3>
+            <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 2px;">
+              Live tracking of your requests broadcasted across our donor and hospital network.
+            </p>
+          </div>
+          <a href="find-donor.html" class="btn btn-sm btn-primary">Find Donors Directly &rarr;</a>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Hospital / Facility</th>
+                <th>Blood Type</th>
+                <th>Units Needed</th>
+                <th>Urgency Level</th>
+                <th>Date Posted</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="patient-requests-tbody">
+              <tr>
+                <td colspan="6" class="text-center" style="padding: 24px; color: var(--text-muted);">
+                  Loading your requests...
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/emergency.js"></script>
+</body>
+</html>

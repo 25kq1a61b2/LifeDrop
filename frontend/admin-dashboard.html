@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard – LifeDrop</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-drop">
+          <svg viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+        </div>
+        <div>
+          <div class="brand-name">Life<span>Drop</span></div>
+          <div class="brand-tag">Admin Console</div>
+        </div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="find-donor.html" class="nav-link">Find Donor</a></li>
+        <li><a href="emergency-requests.html" class="nav-link">Emergency Requests</a></li>
+      </ul>
+
+      <div class="nav-actions" id="nav-actions">
+        <!-- populated by main.js -->
+      </div>
+    </div>
+  </nav>
+
+  <!-- Dashboard Shell -->
+  <div class="dashboard-wrapper" id="admin-dashboard-view">
+    <!-- Sidebar -->
+    <aside class="dashboard-sidebar">
+      <div>
+        <div class="dashboard-brand-user">
+          <div class="sidebar-avatar" style="background: #475569;">👑</div>
+          <div class="sidebar-user-meta">
+            <h4>System Administrator</h4>
+            <span class="sidebar-role-badge">Super Admin</span>
+          </div>
+        </div>
+
+        <ul class="sidebar-nav">
+          <li><a href="admin-dashboard.html" class="sidebar-link active">📊 System Metrics</a></li>
+          <li><a href="#users-management-section" class="sidebar-link">👥 User Accounts</a></li>
+          <li><a href="emergency-requests.html" class="sidebar-link">🚨 Emergency Demands</a></li>
+          <li><a href="find-donor.html" class="sidebar-link">🩸 Donor Network</a></li>
+        </ul>
+      </div>
+
+      <div style="background: rgba(255,255,255,0.05); padding: 14px; border-radius: var(--radius-md); font-size: 0.8rem; color: #94A3B8;">
+        🔒 <strong>Root Security:</strong> <br>
+        Admin actions (account deletion and status modifications) take effect immediately across all nodes.
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="dashboard-main">
+      <!-- Header -->
+      <div class="dashboard-header">
+        <div>
+          <h1>System Overview & Management</h1>
+          <p>Global statistics, real-time blood shortage metrics, and account administration.</p>
+        </div>
+
+        <button class="btn btn-outline" onclick="loadAdminStatistics(); loadAdminUsers();">
+          🔄 Refresh Data
+        </button>
+      </div>
+
+      <!-- 6 Admin Statistics KPI Cards -->
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 32px;">
+        <!-- Card 1: Total Users -->
+        <div class="stat-box">
+          <div class="stat-icon icon-blue">👥</div>
+          <div class="stat-info">
+            <h3 id="stat-total-users">0</h3>
+            <p>Total Registered Users</p>
+          </div>
+        </div>
+
+        <!-- Card 2: Total Donors -->
+        <div class="stat-box">
+          <div class="stat-icon icon-red">🩸</div>
+          <div class="stat-info">
+            <h3 id="stat-total-donors">0</h3>
+            <p>Total Blood Donors</p>
+          </div>
+        </div>
+
+        <!-- Card 3: Available Donors -->
+        <div class="stat-box">
+          <div class="stat-icon icon-green">🟢</div>
+          <div class="stat-info">
+            <h3 id="stat-available-donors">0</h3>
+            <p>Available Ready Donors</p>
+          </div>
+        </div>
+
+        <!-- Card 4: Hospitals -->
+        <div class="stat-box">
+          <div class="stat-icon icon-amber">🏥</div>
+          <div class="stat-info">
+            <h3 id="stat-total-hospitals">0</h3>
+            <p>Connected Hospitals</p>
+          </div>
+        </div>
+
+        <!-- Card 5: Emergency Requests -->
+        <div class="stat-box">
+          <div class="stat-icon icon-red">📋</div>
+          <div class="stat-info">
+            <h3 id="stat-total-requests">0</h3>
+            <p>Total Emergency Requests</p>
+          </div>
+        </div>
+
+        <!-- Card 6: Active Requests -->
+        <div class="stat-box">
+          <div class="stat-icon icon-blue">🚨</div>
+          <div class="stat-info">
+            <h3 id="stat-active-requests" style="color: var(--critical-red);">0</h3>
+            <p>Active Urgent Requests</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Blood Group Availability Distribution Grid -->
+      <div class="card mb-6" style="padding: 24px;">
+        <h3 style="font-size: 1.2rem; margin-bottom: 6px;">Available Donors by Blood Group</h3>
+        <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 16px;">
+          Active voluntary donors currently ready for emergency summons:
+        </p>
+        <div id="blood-group-distribution" style="display: grid; grid-template-columns: repeat(8, 1fr); gap: 12px;">
+          <!-- Loaded via emergency.js -->
+        </div>
+      </div>
+
+      <!-- User Accounts Table Section -->
+      <div class="card" id="users-management-section" style="padding: 24px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 14px;">
+          <div>
+            <h3 style="font-size: 1.25rem;">User Account Administration</h3>
+            <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 2px;">
+              Manage donors, patients, and hospital credentials. Delete inappropriate accounts or change statuses.
+            </p>
+          </div>
+
+          <!-- Table Filters -->
+          <div style="display: flex; gap: 12px; align-items: center;">
+            <input type="text" id="admin-search-users" class="form-control" placeholder="🔍 Search by name, email, phone..." style="width: 260px;">
+            <select id="admin-filter-role" class="form-control" style="width: 150px;">
+              <option value="All">All Roles</option>
+              <option value="donor">Donors</option>
+              <option value="hospital">Hospitals</option>
+              <option value="patient">Patients</option>
+              <option value="admin">Admins</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Blood Type</th>
+                <th>Location</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="admin-users-tbody">
+              <tr>
+                <td colspan="7" class="text-center" style="padding: 32px; color: var(--text-muted);">
+                  Loading user records...
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/emergency.js"></script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login – LifeDrop Blood Management</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-drop">
+          <svg viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+        </div>
+        <div>
+          <div class="brand-name">Life<span>Drop</span></div>
+          <div class="brand-tag">Blood Management</div>
+        </div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="find-donor.html" class="nav-link">Find Donor</a></li>
+        <li><a href="emergency-requests.html" class="nav-link">Emergency Requests</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <span style="font-size: 0.9rem; color: var(--text-muted);">New to LifeDrop?</span>
+        <a href="register.html" class="btn btn-sm btn-primary">Create Account</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="container">
+      <div class="form-card" style="max-width: 520px;">
+        <div class="form-header">
+          <div class="stat-icon icon-red" style="margin: 0 auto 12px auto;">🔑</div>
+          <h2>Welcome Back</h2>
+          <p>Sign in to access your LifeDrop healthcare workstation</p>
+        </div>
+
+        <!-- 1-Click Demo Accounts Selector for Easy Testing -->
+        <div class="demo-accounts-card">
+          <div class="demo-title">
+            <span>⚡ Instant Demo Sign-In (Click role to auto-fill):</span>
+          </div>
+          <div class="demo-buttons">
+            <button type="button" class="btn-demo" onclick="fillDemoAccount('admin')">👑 Admin</button>
+            <button type="button" class="btn-demo" onclick="fillDemoAccount('hospital')">🏥 Hospital</button>
+            <button type="button" class="btn-demo" onclick="fillDemoAccount('donor')">🩸 Donor (O-)</button>
+            <button type="button" class="btn-demo" onclick="fillDemoAccount('patient')">❤️ Patient</button>
+          </div>
+        </div>
+
+        <form id="login-form">
+          <div class="form-group mb-4">
+            <label class="form-label" for="login-email">Email Address</label>
+            <input type="email" id="login-email" class="form-control" placeholder="name@example.com" required autocomplete="email">
+          </div>
+
+          <div class="form-group mb-4">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <label class="form-label" for="login-password">Password</label>
+            </div>
+            <input type="password" id="login-password" class="form-control" placeholder="Enter your password" required autocomplete="current-password">
+          </div>
+
+          <div class="form-group mt-4">
+            <button type="submit" class="btn btn-lg btn-primary" style="width: 100%;">
+              Sign In to Dashboard
+            </button>
+          </div>
+        </form>
+
+        <div style="text-align: center; margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--border-light); font-size: 0.9rem; color: var(--text-muted);">
+          Don't have an account yet? <a href="register.html" style="font-weight: 600;">Register as Donor or Hospital</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer" style="padding: 24px 0;">
+    <div class="container text-center" style="font-size: 0.85rem; color: #94A3B8;">
+      &copy; 2026 LifeDrop – Blood Shortage Management System.
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Post Emergency Blood Request – LifeDrop</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-drop">
+          <svg viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+        </div>
+        <div>
+          <div class="brand-name">Life<span>Drop</span></div>
+          <div class="brand-tag">Emergency Dispatch</div>
+        </div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="find-donor.html" class="nav-link">Find Donor</a></li>
+        <li><a href="emergency-requests.html" class="nav-link">Emergency Requests</a></li>
+      </ul>
+
+      <div class="nav-actions" id="nav-actions">
+        <!-- populated by main.js -->
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="container">
+      <div class="form-card" style="border-top: 5px solid var(--critical-red);">
+        <div class="form-header">
+          <div class="badge badge-critical" style="margin-bottom: 12px; font-size: 0.85rem; padding: 6px 14px;">
+            🚨 Urgent Hospital Broadcast
+          </div>
+          <h2>Post Emergency Blood Request</h2>
+          <p>Submit an urgent requirement to notify active donors and partner blood centers.</p>
+        </div>
+
+        <form id="emergency-request-form">
+          <div class="form-grid">
+
+            <!-- Patient Name -->
+            <div class="form-group">
+              <label class="form-label" for="req-patient-name">Patient Name / ICU Bed ID *</label>
+              <input type="text" id="req-patient-name" class="form-control" placeholder="e.g. John Doe (ICU Trauma-3)" required>
+            </div>
+
+            <!-- Required Blood Group -->
+            <div class="form-group">
+              <label class="form-label" for="req-blood-group">Required Blood Group *</label>
+              <select id="req-blood-group" class="form-control" style="font-weight: 700; font-size: 1rem; color: var(--primary-red);" required>
+                <option value="A+">A+ (A Positive)</option>
+                <option value="A-">A- (A Negative)</option>
+                <option value="B+">B+ (B Positive)</option>
+                <option value="B-">B- (B Negative)</option>
+                <option value="AB+">AB+ (AB Positive)</option>
+                <option value="AB-">AB- (AB Negative)</option>
+                <option value="O+" selected>O+ (O Positive)</option>
+                <option value="O-">O- (Universal Donor)</option>
+              </select>
+            </div>
+
+            <!-- Hospital Name -->
+            <div class="form-group col-span-2">
+              <label class="form-label" for="req-hospital-name">Hospital / Medical Center Name *</label>
+              <input type="text" id="req-hospital-name" class="form-control" placeholder="e.g. Chicago Metropolitan General Hospital" required>
+            </div>
+
+            <!-- City -->
+            <div class="form-group">
+              <label class="form-label" for="req-city">City / Region *</label>
+              <input type="text" id="req-city" class="form-control" placeholder="e.g. Chicago" required>
+            </div>
+
+            <!-- Required Units -->
+            <div class="form-group">
+              <label class="form-label" for="req-units">Required Units (Pints/Bags) *</label>
+              <input type="number" id="req-units" class="form-control" min="1" max="20" value="2" required>
+            </div>
+
+            <!-- Emergency Level -->
+            <div class="form-group">
+              <label class="form-label" for="req-emergency-level">Emergency Urgency Level *</label>
+              <select id="req-emergency-level" class="form-control" style="font-weight: 700;" required>
+                <option value="Critical" selected>🔴 Critical (Immediate / Surgery within 2 hours)</option>
+                <option value="High">🟠 High (Needed within 6-12 hours)</option>
+                <option value="Medium">🟡 Medium (Needed within 24 hours)</option>
+                <option value="Low">🔵 Low (Scheduled procedure reserve)</option>
+              </select>
+            </div>
+
+            <!-- Contact Number -->
+            <div class="form-group">
+              <label class="form-label" for="req-contact-phone">Emergency Contact / Hotline *</label>
+              <input type="tel" id="req-contact-phone" class="form-control" placeholder="e.g. +1 312-555-0191" required>
+            </div>
+
+            <!-- Medical Notes -->
+            <div class="form-group col-span-2">
+              <label class="form-label" for="req-notes">Clinical Details / Surgery Notes (Optional)</label>
+              <textarea id="req-notes" class="form-control" rows="3" placeholder="e.g. Acute hemorrhagic trauma post-accident; immediate whole blood and platelets requested."></textarea>
+              <span class="form-hint">Provide helpful context for donors arriving at the blood bank</span>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="form-group col-span-2" style="margin-top: 14px;">
+              <button type="submit" class="btn btn-lg btn-danger btn-pulse" style="width: 100%;">
+                🚨 Broadcast Emergency Blood Request Now
+              </button>
+            </div>
+
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer" style="padding: 24px 0;">
+    <div class="container text-center" style="font-size: 0.85rem; color: #94A3B8;">
+      &copy; 2026 LifeDrop – Blood Shortage Management System. All requests logged and audited for medical compliance.
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/emergency.js"></script>
+</body>
+</html>

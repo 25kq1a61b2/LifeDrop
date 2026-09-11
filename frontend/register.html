@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register – LifeDrop Blood Management</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-drop">
+          <svg viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+        </div>
+        <div>
+          <div class="brand-name">Life<span>Drop</span></div>
+          <div class="brand-tag">Blood Management</div>
+        </div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="find-donor.html" class="nav-link">Find Donor</a></li>
+        <li><a href="emergency-requests.html" class="nav-link">Emergency Requests</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <span style="font-size: 0.9rem; color: var(--text-muted);">Already registered?</span>
+        <a href="login.html" class="btn btn-sm btn-outline">Log In</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="container">
+      <div class="form-card">
+        <div class="form-header">
+          <div class="stat-icon icon-red" style="margin: 0 auto 12px auto;">🩸</div>
+          <h2>Join the LifeDrop Network</h2>
+          <p>Register as a blood donor, patient family, or partner healthcare facility.</p>
+        </div>
+
+        <form id="register-form">
+          <div class="form-grid">
+
+            <!-- User Type Selector -->
+            <div class="form-group col-span-2">
+              <label class="form-label" for="reg-role">I am registering as *</label>
+              <select id="reg-role" class="form-control" style="font-weight: 600; font-size: 1rem;" required>
+                <option value="donor" selected>🩸 Blood Donor (I want to donate blood)</option>
+                <option value="patient">❤️ Patient / Patient Family (I need blood assistance)</option>
+                <option value="hospital">🏥 Hospital / Blood Center (I represent a medical facility)</option>
+              </select>
+              <span class="form-hint">Select your primary role in the LifeDrop healthcare network</span>
+            </div>
+
+            <!-- Full Name -->
+            <div class="form-group">
+              <label class="form-label" for="reg-name">Full Name *</label>
+              <input type="text" id="reg-name" class="form-control" placeholder="e.g. Dr. Jane Smith or Alex Miller" required>
+            </div>
+
+            <!-- Email Address -->
+            <div class="form-group">
+              <label class="form-label" for="reg-email">Email Address *</label>
+              <input type="email" id="reg-email" class="form-control" placeholder="name@example.com" required>
+            </div>
+
+            <!-- Password -->
+            <div class="form-group">
+              <label class="form-label" for="reg-password">Password *</label>
+              <input type="password" id="reg-password" class="form-control" placeholder="Minimum 6 characters" minlength="6" required>
+            </div>
+
+            <!-- Confirm Password -->
+            <div class="form-group">
+              <label class="form-label" for="reg-confirm-password">Confirm Password *</label>
+              <input type="password" id="reg-confirm-password" class="form-control" placeholder="Re-enter password" minlength="6" required>
+            </div>
+
+            <!-- Phone Number -->
+            <div class="form-group">
+              <label class="form-label" for="reg-phone">Phone Number *</label>
+              <input type="tel" id="reg-phone" class="form-control" placeholder="e.g. +1 312-555-0144" required>
+            </div>
+
+            <!-- Gender -->
+            <div class="form-group">
+              <label class="form-label" for="reg-gender">Gender</label>
+              <select id="reg-gender" class="form-control">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+            <!-- Age -->
+            <div class="form-group">
+              <label class="form-label" for="reg-age">Age (years)</label>
+              <input type="number" id="reg-age" class="form-control" min="18" max="70" placeholder="e.g. 28">
+            </div>
+
+            <!-- City -->
+            <div class="form-group">
+              <label class="form-label" for="reg-city">City *</label>
+              <input type="text" id="reg-city" class="form-control" placeholder="e.g. Chicago" required>
+            </div>
+
+            <!-- State -->
+            <div class="form-group col-span-2">
+              <label class="form-label" for="reg-state">State / Province *</label>
+              <input type="text" id="reg-state" class="form-control" placeholder="e.g. Illinois" required>
+            </div>
+
+            <!-- Donor Specific Fields -->
+            <div id="donor-specific-fields" class="col-span-2" style="background: var(--primary-light-red); padding: 18px; border-radius: var(--radius-md); border: 1px dashed rgba(211, 47, 47, 0.4); margin: 6px 0;">
+              <h4 style="color: var(--primary-dark-red); margin-bottom: 12px; font-size: 0.95rem;">
+                🩸 Donor Medical Profile
+              </h4>
+              <div class="form-grid">
+                <div class="form-group">
+                  <label class="form-label" for="reg-blood-group">Blood Group *</label>
+                  <select id="reg-blood-group" class="form-control" style="font-weight: 700;">
+                    <option value="A+">A+ (A Positive)</option>
+                    <option value="A-">A- (A Negative)</option>
+                    <option value="B+">B+ (B Positive)</option>
+                    <option value="B-">B- (B Negative)</option>
+                    <option value="AB+">AB+ (Universal Recipient)</option>
+                    <option value="AB-">AB- (AB Negative)</option>
+                    <option value="O+" selected>O+ (O Positive)</option>
+                    <option value="O-">O- (Universal Donor)</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="reg-availability">Availability Status *</label>
+                  <select id="reg-availability" class="form-control" style="font-weight: 600;">
+                    <option value="Available" selected>🟢 Available (Ready to donate)</option>
+                    <option value="Not Available">⚪ Not Available (Resting / Inactive)</option>
+                  </select>
+                </div>
+
+                <div class="form-group col-span-2">
+                  <label class="form-label" for="reg-last-donation">Last Donation Date (if applicable)</label>
+                  <input type="date" id="reg-last-donation" class="form-control">
+                  <span class="form-hint">Leave blank if you are a first-time donor.</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Hospital Specific Fields -->
+            <div id="hospital-specific-fields" class="col-span-2" style="display: none; background: var(--healthcare-light-blue); padding: 18px; border-radius: var(--radius-md); border: 1px dashed #7DD3FC; margin: 6px 0;">
+              <h4 style="color: var(--healthcare-dark-blue); margin-bottom: 12px; font-size: 0.95rem;">
+                🏥 Medical Facility Details
+              </h4>
+              <div class="form-group">
+                <label class="form-label" for="reg-hospital-name">Official Hospital / Facility Name</label>
+                <input type="text" id="reg-hospital-name" class="form-control" placeholder="e.g. St. Jude Memorial Trauma Center">
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="form-group col-span-2" style="margin-top: 12px;">
+              <button type="submit" class="btn btn-lg btn-primary" style="width: 100%;">
+                Create Account
+              </button>
+            </div>
+
+          </div>
+        </form>
+
+        <div style="text-align: center; margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--border-light); font-size: 0.9rem; color: var(--text-muted);">
+          Already have an account? <a href="login.html" style="font-weight: 600;">Sign in here</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer" style="padding: 24px 0;">
+    <div class="container text-center" style="font-size: 0.85rem; color: #94A3B8;">
+      &copy; 2026 LifeDrop – Blood Shortage Management System.
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

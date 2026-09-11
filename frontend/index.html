@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LifeDrop – Blood Shortage Management System</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Emergency Alert Banner -->
+  <div class="emergency-banner">
+    <div class="emergency-banner-inner">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <span class="ticker-badge">Live Ticker</span>
+        <span id="emergency-ticker-text">Loading emergency blood demands...</span>
+      </div>
+      <div>
+        <a href="emergency-request.html" class="btn btn-sm btn-outline-danger" style="background: white; color: #B91C1C; font-weight: 700; border: none;">
+          🚨 Post Emergency
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-drop">
+          <svg viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+        </div>
+        <div>
+          <div class="brand-name">Life<span>Drop</span></div>
+          <div class="brand-tag">Blood Management</div>
+        </div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link active">Home</a></li>
+        <li><a href="find-donor.html" class="nav-link">Find Donor</a></li>
+        <li><a href="emergency-requests.html" class="nav-link">Emergency Requests</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+      </ul>
+
+      <div class="nav-actions" id="nav-actions">
+        <a href="login.html" class="btn btn-sm btn-outline">Login</a>
+        <a href="register.html" class="btn btn-sm btn-primary">Register</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container hero-grid">
+      <div>
+        <div class="hero-badge">
+          <span>❤️ Emergency Blood Coordination System</span>
+        </div>
+        <h1 class="hero-title">
+          Every Drop Can <br><span>Save a Life</span>
+        </h1>
+        <p class="hero-description">
+          LifeDrop connects blood donors, hospitals, and patients to help provide blood quickly during emergencies. Reduce search time from hours to seconds when every second counts.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="find-donor.html" class="btn btn-lg btn-primary">
+            🔍 Find a Donor
+          </a>
+          <a href="register.html" class="btn btn-lg btn-outline-danger">
+            🩸 Become a Donor
+          </a>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 16px; color: var(--text-muted); font-size: 0.9rem;">
+          <span>✓ 100% Free Service</span>
+          <span>•</span>
+          <span>✓ Direct Hospital Reach</span>
+          <span>•</span>
+          <span>✓ Verified Donors</span>
+        </div>
+      </div>
+
+      <div>
+        <div class="hero-card">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+            <h3 style="font-size: 1.25rem;">Live Blood Availability</h3>
+            <span class="badge badge-available">Real-time</span>
+          </div>
+          <p style="font-size: 0.88rem; color: var(--text-muted);">
+            Immediate match availability across metropolitan blood banks:
+          </p>
+
+          <div class="blood-match-visual">
+            <div class="blood-tag-card">
+              <div class="blood-tag-type">O-</div>
+              <div class="blood-tag-status" style="color: var(--critical-red);">Universal</div>
+            </div>
+            <div class="blood-tag-card">
+              <div class="blood-tag-type">O+</div>
+              <div class="blood-tag-status" style="color: var(--success-green);">High Stock</div>
+            </div>
+            <div class="blood-tag-card">
+              <div class="blood-tag-type">A+</div>
+              <div class="blood-tag-status" style="color: var(--success-green);">Available</div>
+            </div>
+            <div class="blood-tag-card">
+              <div class="blood-tag-type">A-</div>
+              <div class="blood-tag-status" style="color: var(--warning-amber);">Needed</div>
+            </div>
+            <div class="blood-tag-card">
+              <div class="blood-tag-type">B+</div>
+              <div class="blood-tag-status" style="color: var(--success-green);">Available</div>
+            </div>
+            <div class="blood-tag-card">
+              <div class="blood-tag-type">B-</div>
+              <div class="blood-tag-status" style="color: var(--critical-red);">Critical</div>
+            </div>
+            <div class="blood-tag-card">
+              <div class="blood-tag-type">AB+</div>
+              <div class="blood-tag-status" style="color: var(--healthcare-dark-blue);">Universal Rec.</div>
+            </div>
+            <div class="blood-tag-card">
+              <div class="blood-tag-type">AB-</div>
+              <div class="blood-tag-status" style="color: var(--warning-amber);">Needed</div>
+            </div>
+          </div>
+
+          <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-size: 0.85rem; color: var(--text-muted);">Need immediate units for surgery?</span>
+            <a href="emergency-request.html" class="btn btn-sm btn-danger">Broadcast Request</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Professional Healthcare Statistics Strip -->
+  <section class="stats-section">
+    <div class="container stats-grid">
+      <div class="stat-box">
+        <div class="stat-icon icon-red">🩸</div>
+        <div class="stat-info">
+          <h3>1,420+</h3>
+          <p>Available Blood Donors</p>
+        </div>
+      </div>
+
+      <div class="stat-box">
+        <div class="stat-icon icon-blue">🚨</div>
+        <div class="stat-info">
+          <h3>380+</h3>
+          <p>Emergency Requests</p>
+        </div>
+      </div>
+
+      <div class="stat-box">
+        <div class="stat-icon icon-green">🏥</div>
+        <div class="stat-info">
+          <h3>85+</h3>
+          <p>Hospitals Connected</p>
+        </div>
+      </div>
+
+      <div class="stat-box">
+        <div class="stat-icon icon-amber">❤️</div>
+        <div class="stat-info">
+          <h3>2,950+</h3>
+          <p>Lives Supported</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How LifeDrop Works -->
+  <section class="workflow-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">How It Works</span>
+        <h2 class="section-title">Four Steps to Save a Life</h2>
+        <p class="section-subtitle">
+          In emergency situations, quick coordination between patients, hospitals, and donors minimizes critical delays.
+        </p>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <div class="step-icon">📝</div>
+          <h4>Register</h4>
+          <p>Create an account in seconds as a Donor, Patient, or Hospital with blood group and location details.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <div class="step-icon">🔍</div>
+          <h4>Search for Blood</h4>
+          <p>Filter verified donors instantly by blood group, city proximity, and live availability status.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <div class="step-icon">📞</div>
+          <h4>Contact Donors</h4>
+          <p>Directly reach nearby matching donors via phone or secure messaging during urgent shortages.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">4</div>
+          <div class="step-icon">❤️</div>
+          <h4>Save a Life</h4>
+          <p>Complete the transfusion at accredited medical facilities and mark requests as fulfilled.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" style="background-color: white; padding: 72px 0; border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light);">
+    <div class="container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center;">
+      <div>
+        <span class="section-tag">About LifeDrop</span>
+        <h2 class="section-title">Bridging the Gap in Critical Blood Shortages</h2>
+        <p style="color: var(--text-muted); margin-bottom: 16px; font-size: 1.05rem;">
+          During accidents, complicated surgeries, and sudden medical emergencies, finding compatible blood quickly is one of healthcare's greatest logistical hurdles.
+        </p>
+        <p style="color: var(--text-muted); margin-bottom: 24px;">
+          LifeDrop was engineered to solve this bottleneck by providing a centralized, transparent platform where accredited hospitals and urgent patients can immediately identify, verify, and mobilize ready donors.
+        </p>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div style="background: var(--bg-main); padding: 16px; border-radius: var(--radius-md); border-left: 4px solid var(--primary-red);">
+            <strong style="color: var(--text-dark);">For Donors</strong>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">Update your availability in 1 click and respond when your blood type is required nearby.</p>
+          </div>
+          <div style="background: var(--bg-main); padding: 16px; border-radius: var(--radius-md); border-left: 4px solid var(--healthcare-blue);">
+            <strong style="color: var(--text-dark);">For Hospitals</strong>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">Broadcast critical supply shortages to active donors and track fulfillment in real-time.</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="background: var(--bg-main); border: 1px solid var(--border-light); border-radius: var(--radius-lg); padding: 36px; box-shadow: var(--shadow-md);">
+        <h3 style="margin-bottom: 20px;">Universal Donor & Recipient Facts</h3>
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 14px;">
+          <li style="display: flex; gap: 12px; align-items: flex-start;">
+            <span class="badge-blood" style="font-size: 0.9rem; padding: 2px 8px;">O-</span>
+            <div>
+              <strong style="color: var(--text-dark);">Universal Red Cell Donor</strong>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">Can be given to patients of any blood type in emergency trauma cases before typing is finished.</p>
+            </div>
+          </li>
+          <li style="display: flex; gap: 12px; align-items: flex-start;">
+            <span class="badge-blood" style="font-size: 0.9rem; padding: 2px 8px;">AB+</span>
+            <div>
+              <strong style="color: var(--text-dark);">Universal Recipient</strong>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">Can safely receive red blood cells from any blood type (A, B, AB, or O).</p>
+            </div>
+          </li>
+          <li style="display: flex; gap: 12px; align-items: flex-start;">
+            <span class="badge-blood" style="font-size: 0.9rem; padding: 2px 8px;">56d</span>
+            <div>
+              <strong style="color: var(--text-dark);">Donation Interval</strong>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">A healthy adult can safely donate whole blood every 56 days (8 weeks).</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section style="background: linear-gradient(135deg, #B71C1C, #D32F2F); color: white; padding: 64px 0; text-align: center;">
+    <div class="container" style="max-width: 800px;">
+      <h2 style="color: white; font-size: 2.4rem; margin-bottom: 16px;">Be a Hero in Someone's Story</h2>
+      <p style="color: #FEE2E2; font-size: 1.15rem; margin-bottom: 32px;">
+        One donation can save up to three lives. Register today or find a donor to support an ongoing patient emergency.
+      </p>
+      <div style="display: flex; justify-content: center; gap: 16px;">
+        <a href="register.html" class="btn btn-lg" style="background: white; color: var(--primary-dark-red); font-weight: 700;">
+          Register as Donor
+        </a>
+        <a href="emergency-request.html" class="btn btn-lg btn-outline" style="border-color: white; color: white;">
+          Submit Blood Request
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+            <div class="logo-drop" style="width: 32px; height: 32px;">
+              <svg viewBox="0 0 24 24" style="width: 16px; height: 16px;"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+            </div>
+            <h3 style="margin: 0;">LifeDrop</h3>
+          </div>
+          <p>
+            LifeDrop is a dedicated Blood Shortage Management System connecting voluntary donors, emergency patients, and hospitals to rapidly mitigate blood deficits.
+          </p>
+        </div>
+
+        <div class="footer-column">
+          <h4>Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="find-donor.html">Find a Donor</a></li>
+            <li><a href="emergency-requests.html">Emergency Requests</a></li>
+            <li><a href="emergency-request.html">Post Request</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Portals</h4>
+          <ul class="footer-links">
+            <li><a href="donor-dashboard.html">Donor Dashboard</a></li>
+            <li><a href="hospital-dashboard.html">Hospital Dashboard</a></li>
+            <li><a href="patient-dashboard.html">Patient Portal</a></li>
+            <li><a href="admin-dashboard.html">Admin Console</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Emergency Contacts</h4>
+          <ul class="footer-links">
+            <li><a href="#">🚑 National Emergency: 911</a></li>
+            <li><a href="#">🩸 Blood Bank Hotline: 1-800-LIFEDROP</a></li>
+            <li><a href="mailto:support@lifedrop.org">✉ support@lifedrop.org</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 LifeDrop – Blood Shortage Management System. All rights reserved.</p>
+        <p>A professional healthcare initiative for rapid life-saving blood supply.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

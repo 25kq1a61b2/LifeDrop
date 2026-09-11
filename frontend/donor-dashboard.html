@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Donor Dashboard – LifeDrop</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-drop">
+          <svg viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+        </div>
+        <div>
+          <div class="brand-name">Life<span>Drop</span></div>
+          <div class="brand-tag">Donor Portal</div>
+        </div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="find-donor.html" class="nav-link">Find Donor</a></li>
+        <li><a href="emergency-requests.html" class="nav-link">Emergency Requests</a></li>
+      </ul>
+
+      <div class="nav-actions" id="nav-actions">
+        <!-- populated by main.js -->
+      </div>
+    </div>
+  </nav>
+
+  <!-- Dashboard Shell -->
+  <div class="dashboard-wrapper" id="donor-dashboard-view">
+    <!-- Sidebar -->
+    <aside class="dashboard-sidebar">
+      <div>
+        <div class="dashboard-brand-user">
+          <div class="sidebar-avatar" id="sidebar-avatar-initial">🩸</div>
+          <div class="sidebar-user-meta">
+            <h4 id="donor-name">Loading...</h4>
+            <span class="sidebar-role-badge">Blood Donor</span>
+          </div>
+        </div>
+
+        <ul class="sidebar-nav">
+          <li><a href="donor-dashboard.html" class="sidebar-link active">📊 My Status & Demands</a></li>
+          <li><a href="emergency-requests.html" class="sidebar-link">🚨 Emergency Requests</a></li>
+          <li><a href="find-donor.html" class="sidebar-link">🔍 Find Other Donors</a></li>
+          <li><a href="javascript:void(0)" onclick="openModal('profile-modal')" class="sidebar-link">⚙️ Edit Profile</a></li>
+        </ul>
+      </div>
+
+      <div style="background: rgba(255,255,255,0.05); padding: 14px; border-radius: var(--radius-md); font-size: 0.8rem; color: #94A3B8;">
+        💡 <strong>Quick Tip:</strong> Keeping your status up-to-date helps hospitals reach only active, ready donors.
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="dashboard-main">
+      <!-- Header Banner -->
+      <div class="dashboard-header">
+        <div>
+          <h1>Welcome, Donor Hero!</h1>
+          <p>Manage your life-saving availability and view critical emergency blood requests.</p>
+        </div>
+
+        <!-- Availability Toggle Switch Widget -->
+        <div class="switch-container">
+          <span style="font-weight: 600; font-size: 0.9rem; color: var(--text-dark);">Availability:</span>
+          <label class="switch">
+            <input type="checkbox" id="donor-availability-switch" checked>
+            <span class="slider"></span>
+          </label>
+          <span id="donor-availability-status" class="badge badge-available">Available</span>
+        </div>
+      </div>
+
+      <!-- Overview Cards -->
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 32px;">
+        <div class="card card-hover" style="display: flex; align-items: center; gap: 16px;">
+          <div class="stat-icon icon-red">🩸</div>
+          <div>
+            <small style="color: var(--text-muted); font-weight: 600; text-transform: uppercase; font-size: 0.75rem;">Blood Group</small>
+            <h3 id="donor-blood-group" style="font-size: 1.8rem; color: var(--primary-red);">O+</h3>
+          </div>
+        </div>
+
+        <div class="card card-hover" style="display: flex; align-items: center; gap: 16px;">
+          <div class="stat-icon icon-blue">📍</div>
+          <div>
+            <small style="color: var(--text-muted); font-weight: 600; text-transform: uppercase; font-size: 0.75rem;">Registered City</small>
+            <h4 id="donor-city" style="font-size: 1.15rem; margin-top: 4px;">Loading...</h4>
+          </div>
+        </div>
+
+        <div class="card card-hover" style="display: flex; align-items: center; gap: 16px;">
+          <div class="stat-icon icon-green">📅</div>
+          <div>
+            <small style="color: var(--text-muted); font-weight: 600; text-transform: uppercase; font-size: 0.75rem;">Last Donated</small>
+            <h4 id="donor-last-donation" style="font-size: 1.05rem; margin-top: 4px;">Loading...</h4>
+          </div>
+        </div>
+
+        <div class="card card-hover" style="display: flex; align-items: center; gap: 16px;">
+          <div class="stat-icon icon-amber">🛡️</div>
+          <div>
+            <small style="color: var(--text-muted); font-weight: 600; text-transform: uppercase; font-size: 0.75rem;">Eligibility Status</small>
+            <h4 style="color: var(--success-green); font-size: 1.05rem; margin-top: 4px;">Eligible to Donate</h4>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Action Buttons Bar -->
+      <div style="display: flex; gap: 14px; margin-bottom: 32px;">
+        <button class="btn btn-outline" onclick="openModal('profile-modal')">
+          ✏️ Update Profile
+        </button>
+        <a href="emergency-requests.html" class="btn btn-primary">
+          🚨 View All Emergency Requests
+        </a>
+      </div>
+
+      <!-- Matching Emergency Demands -->
+      <div class="card" style="padding: 28px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+          <div>
+            <h3 style="font-size: 1.3rem;">🚨 Emergency Requests Matching Your Blood Group</h3>
+            <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 4px;">
+              Hospitals urgently seeking your blood type for ICU and trauma operations:
+            </p>
+          </div>
+          <a href="emergency-requests.html" class="btn btn-sm btn-outline-danger">View Full Feed &rarr;</a>
+        </div>
+
+        <div id="matching-requests-container" class="requests-grid" style="margin-top: 0;">
+          <!-- Loaded via donor.js -->
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Profile Update Modal -->
+  <div class="modal-overlay" id="profile-modal">
+    <div class="modal-box" style="max-width: 600px;">
+      <button class="modal-close" onclick="closeModal('profile-modal')">&times;</button>
+      
+      <div style="margin-bottom: 20px;">
+        <h3 style="font-size: 1.4rem;">Update Donor Profile</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">Keep your contact info and donation records current</p>
+      </div>
+
+      <form id="donor-profile-form">
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label" for="profile-name">Full Name</label>
+            <input type="text" id="profile-name" class="form-control" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="profile-phone">Phone Number</label>
+            <input type="tel" id="profile-phone" class="form-control" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="profile-city">City</label>
+            <input type="text" id="profile-city" class="form-control" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="profile-state">State</label>
+            <input type="text" id="profile-state" class="form-control" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="profile-blood-group">Blood Group</label>
+            <select id="profile-blood-group" class="form-control">
+              <option value="A+">A+</option>
+              <option value="A-">A-</option>
+              <option value="B+">B+</option>
+              <option value="B-">B-</option>
+              <option value="AB+">AB+</option>
+              <option value="AB-">AB-</option>
+              <option value="O+">O+</option>
+              <option value="O-">O-</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="profile-last-donation">Last Donation Date</label>
+            <input type="date" id="profile-last-donation" class="form-control">
+          </div>
+
+          <div class="form-group col-span-2" style="margin-top: 12px;">
+            <button type="submit" class="btn btn-primary" style="width: 100%;">
+              Save Changes
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/donor.js"></script>
+</body>
+</html>

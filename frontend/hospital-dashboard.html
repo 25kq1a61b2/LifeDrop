@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hospital Dashboard – LifeDrop</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-drop">
+          <svg viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+        </div>
+        <div>
+          <div class="brand-name">Life<span>Drop</span></div>
+          <div class="brand-tag">Hospital Console</div>
+        </div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="find-donor.html" class="nav-link">Find Donor</a></li>
+        <li><a href="emergency-requests.html" class="nav-link">Emergency Requests</a></li>
+      </ul>
+
+      <div class="nav-actions" id="nav-actions">
+        <!-- populated by main.js -->
+      </div>
+    </div>
+  </nav>
+
+  <!-- Dashboard Shell -->
+  <div class="dashboard-wrapper" id="hospital-dashboard-view">
+    <!-- Sidebar -->
+    <aside class="dashboard-sidebar">
+      <div>
+        <div class="dashboard-brand-user">
+          <div class="sidebar-avatar" style="background: var(--healthcare-blue);">🏥</div>
+          <div class="sidebar-user-meta">
+            <h4 id="hospital-name-display">Loading Hospital...</h4>
+            <span class="sidebar-role-badge">Healthcare Partner</span>
+          </div>
+        </div>
+
+        <ul class="sidebar-nav">
+          <li><a href="hospital-dashboard.html" class="sidebar-link active">📊 Hospital Workstation</a></li>
+          <li><a href="javascript:void(0)" onclick="openModal('create-request-modal')" class="sidebar-link">🚨 New Blood Request</a></li>
+          <li><a href="find-donor.html" class="sidebar-link">🔍 Search All Donors</a></li>
+          <li><a href="emergency-requests.html" class="sidebar-link">📋 Public Board</a></li>
+        </ul>
+      </div>
+
+      <div style="background: rgba(255,255,255,0.05); padding: 14px; border-radius: var(--radius-md); font-size: 0.82rem; color: #94A3B8;">
+        📍 <strong>Facility Base:</strong> <br>
+        <span id="hospital-city-display" style="color: white; font-weight: 600;">Chicago, IL</span>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="dashboard-main">
+      <!-- Header -->
+      <div class="dashboard-header">
+        <div>
+          <h1>Hospital Blood Management Console</h1>
+          <p>Coordinate emergency transfusions, track demand status, and search regional donor reserves.</p>
+        </div>
+
+        <button class="btn btn-danger btn-pulse" onclick="openModal('create-request-modal')">
+          + Create Emergency Request
+        </button>
+      </div>
+
+      <!-- Quick KPI Strip -->
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 32px;">
+        <div class="card card-hover" style="display: flex; align-items: center; gap: 16px;">
+          <div class="stat-icon icon-red">🚨</div>
+          <div>
+            <small style="color: var(--text-muted); font-weight: 600; text-transform: uppercase; font-size: 0.75rem;">Active Requests</small>
+            <h3 id="stat-hospital-active" style="font-size: 1.8rem; color: var(--critical-red);">0</h3>
+          </div>
+        </div>
+
+        <div class="card card-hover" style="display: flex; align-items: center; gap: 16px;">
+          <div class="stat-icon icon-green">✓</div>
+          <div>
+            <small style="color: var(--text-muted); font-weight: 600; text-transform: uppercase; font-size: 0.75rem;">Fulfilled Requests</small>
+            <h3 id="stat-hospital-fulfilled" style="font-size: 1.8rem; color: var(--success-green);">0</h3>
+          </div>
+        </div>
+
+        <div class="card card-hover" style="display: flex; align-items: center; gap: 16px;">
+          <div class="stat-icon icon-blue">👥</div>
+          <div>
+            <small style="color: var(--text-muted); font-weight: 600; text-transform: uppercase; font-size: 0.75rem;">Available Donors Nearby</small>
+            <h3 id="stat-hospital-donors" style="font-size: 1.8rem; color: var(--healthcare-blue);">0</h3>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 1: Hospital Active Requests Table -->
+      <div class="card mb-6" style="padding: 24px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+          <div>
+            <h3 style="font-size: 1.25rem;">Active Emergency Requests from Your Facility</h3>
+            <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 2px;">
+              Change status to 'Fulfilled' once donor units are secured or 'Cancelled' if surgery needs change.
+            </p>
+          </div>
+          <button class="btn btn-sm btn-outline" onclick="loadHospitalRequests()">🔄 Refresh</button>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Patient / Bed</th>
+                <th>Blood Type</th>
+                <th>Units</th>
+                <th>Urgency</th>
+                <th>Posted Date</th>
+                <th>Change Status</th>
+                <th>Contact</th>
+              </tr>
+            </thead>
+            <tbody id="hospital-requests-tbody">
+              <tr>
+                <td colspan="7" class="text-center" style="padding: 24px; color: var(--text-muted);">
+                  Loading facility requests...
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Section 2: Regional Donors Ready for Dispatch -->
+      <div class="card" style="padding: 24px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+          <div>
+            <h3 style="font-size: 1.25rem;">Available Donors in Your City</h3>
+            <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 2px;">
+              Pre-screened voluntary donors active and ready to assist medical centers.
+            </p>
+          </div>
+          <a href="find-donor.html" class="btn btn-sm btn-outline">Full Directory &rarr;</a>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Donor Name</th>
+                <th>Blood Group</th>
+                <th>Direct Contact</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="hospital-donors-tbody">
+              <tr>
+                <td colspan="5" class="text-center" style="padding: 24px; color: var(--text-muted);">
+                  Loading nearby donors...
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Create Emergency Request Modal -->
+  <div class="modal-overlay" id="create-request-modal">
+    <div class="modal-box" style="max-width: 650px;">
+      <button class="modal-close" onclick="closeModal('create-request-modal')">&times;</button>
+      
+      <div style="margin-bottom: 20px;">
+        <h3 style="font-size: 1.35rem; color: var(--critical-red);">Broadcast Emergency Blood Request</h3>
+        <p style="color: var(--text-muted); font-size: 0.88rem;">Instantly log demand and alert registered matching donors</p>
+      </div>
+
+      <form id="hospital-create-request-form">
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label" for="hosp-req-patient">Patient Name / ICU Reference *</label>
+            <input type="text" id="hosp-req-patient" class="form-control" required placeholder="e.g. ICU-Bed-04 (Trauma)">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="hosp-req-blood-group">Required Blood Group *</label>
+            <select id="hosp-req-blood-group" class="form-control" style="font-weight: 700;">
+              <option value="A+">A+</option>
+              <option value="A-">A-</option>
+              <option value="B+">B+</option>
+              <option value="B-">B-</option>
+              <option value="AB+">AB+</option>
+              <option value="AB-">AB-</option>
+              <option value="O+" selected>O+</option>
+              <option value="O-">O- (Universal)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="hosp-req-units">Required Units *</label>
+            <input type="number" id="hosp-req-units" class="form-control" min="1" max="20" value="2" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="hosp-req-emergency-level">Urgency Level *</label>
+            <select id="hosp-req-emergency-level" class="form-control" style="font-weight: 700;">
+              <option value="Critical" selected>🔴 Critical (Within 2 Hours)</option>
+              <option value="High">🟠 High (Within 6 Hours)</option>
+              <option value="Medium">🟡 Medium (Within 24 Hours)</option>
+              <option value="Low">🔵 Low (Reserve/Planned)</option>
+            </select>
+          </div>
+
+          <div class="form-group col-span-2">
+            <label class="form-label" for="hosp-req-phone">Emergency Contact Hotline *</label>
+            <input type="tel" id="hosp-req-phone" class="form-control" required>
+          </div>
+
+          <div class="form-group col-span-2">
+            <label class="form-label" for="hosp-req-notes">Clinical Details / Instructions</label>
+            <textarea id="hosp-req-notes" class="form-control" rows="2" placeholder="Report to Blood Bank desk on 2nd Floor. Attn: Transfusion Specialist."></textarea>
+          </div>
+
+          <div class="form-group col-span-2" style="margin-top: 12px;">
+            <button type="submit" class="btn btn-danger btn-pulse" style="width: 100%;">
+              Broadcast Emergency Request
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/donor.js"></script>
+  <script src="js/emergency.js"></script>
+</body>
+</html>
