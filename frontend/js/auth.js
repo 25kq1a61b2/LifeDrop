@@ -1,4 +1,4 @@
-/**
+/**const API_BASE_URL = 'https://lifedrop-1-o9n2.onrender.com/api';
  * LifeDrop – Authentication & Session Logic
  */
 
@@ -161,12 +161,13 @@ function initLoginPage() {
     const password = document.getElementById('login-password').value;
 
     try {
-      const res = await fetch(`${API_BASE}/auth/login`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
-      });
-
+      const response = await fetch(${API_BASE_URL}/auth/login, {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ email, password })
+});
       const data = await res.json();
 
       if (!res.ok || !data.success) {
